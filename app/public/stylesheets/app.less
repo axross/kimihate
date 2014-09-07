@@ -1,0 +1,22 @@
+// Require variabled
+@import './variable.less';
+
+// Require normalize
+@import './normalize.less';
+
+// Require fontawesome
+@import './fontawesome.less';
+
+body {
+  min-width: 800 + 16 * 3px;
+  // height: 100%;
+  background: @grey100;
+  color: @grey900;
+}
+
+// Require global styles
+@import './views/global.less';
+
+// Require each styles;
+@import './views/me.less';
+@import './views/show.less';

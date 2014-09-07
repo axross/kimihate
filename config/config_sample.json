@@ -1,0 +1,17 @@
+{
+  "title": "kimihate",
+  "session": {
+    "secret": ""
+  },
+  "db": {
+    "uri":  "",
+    "name": "kimihate"
+  },
+  "auth": {
+    "twitter": {
+      "token":       "",
+      "secret":      "",
+      "callbackUrl": "http://localhost/auth/callback"
+    }
+  }
+}

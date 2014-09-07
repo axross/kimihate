@@ -1,0 +1,19 @@
+# Ignore cache files
+/node_modules
+/app/public/javascripts/bundle.js
+/app/public/stylesheets/bundle.css
+
+# Ignore vagrant settings
+.vagrant/
+
+# Ignore unneed files
+.DS_Store
+Thumbs.DB
+*.swp
+.idea
+npm-debug.log
+
+# Ignore configs
+/config/config.json
+/config/dev.json
+/config/pro.json

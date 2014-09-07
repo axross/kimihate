@@ -1,0 +1,146 @@
+.v-show {
+  position: relative;
+
+  .entries {
+    display: block;
+    min-width: 480 + 32px;
+    margin: 0 320 + 16px 0 0;
+    padding: 16px;
+
+    h1 {
+      width: 100%;
+      margin: 0 0 16px 0;
+      padding: 8px 16px;
+      background: @white;
+      border-bottom: @teal500 4px solid;
+      color: @grey900;
+    }
+
+    .entry, .empty {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      margin: 0 0 16px 0;
+      padding: 16px;
+      background: @white;
+
+      &:hover { box-shadow: rgba(0, 0, 0, .25) 0 4px 8px 0; }
+
+      .title {
+        display: block;
+        margin: 0 96px 12px 0;
+        color: @grey900;
+        font-size: 20px;
+        font-weight: 600;
+
+        a:hover {
+          color: @deeporangeA200;
+        }
+      }
+      .meta {
+        position: relative;
+        min-height: 96px;
+
+        .thumb {
+          position: absolute;
+          width: 128px;
+          max-height: 96px;
+        }
+        .description {
+          display: block;
+          margin: 0 0 0 128 + 16px;
+          color: @grey500;
+          font-size: 12px;
+        }
+      }
+      .stars {
+        display: inline-block;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        color: @deeporangeA200;
+        font-size: 12px;
+      }
+      .tags {
+        margin: 12px -8px -8px 0;
+        font-size: 0;
+
+        .date, .tag {
+          display: inline-block;
+          margin: 0 8px 8px 0;
+          padding: 0 8px;
+          color: @white;
+          font-size: 12px;
+          text-shadow: rgba(0, 0, 0, .5) 0 0 4px;
+          line-height: 24px;
+        }
+        .date {
+          background: @grey900;
+        }
+        .tag {
+          background: @teal500;
+        }
+      }
+    }
+    .empty {
+      text-align: center;
+
+      &:hover { box-shadow: none; }
+    }
+  }
+
+  .events {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 320px;
+    padding: 16px;
+    background: @white;
+    font-size: 0;
+
+    &:hover { box-shadow: rgba(0, 0, 0, .25) 0 4px 8px 0; }
+
+    .datetime {
+      margin-bottom: 8px;
+
+      .year, .date, .time {
+        display: inline-block;
+        color: @grey500;
+      }
+      .year {
+        font-size: 12px;
+      }
+      .date {
+        /* margin-left: 16px; */
+        font-size: 20px;
+      }
+      .time {
+        margin-left: 8px;
+        font-size: 20px;
+      }
+    }
+    .title {
+      margin-bottom: 8px;
+      color: @grey900;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .participants {
+      margin-bottom: 8px;
+      font-size: 12px;
+
+      .now {
+        font-size: 16px;
+      }
+      .max {
+        font-size: 16px;
+      }
+    }
+    .venue {
+      color: @grey500;
+      font-size: 14px;
+    }
+
+  }
+}

@@ -1,0 +1,22 @@
+<section class="v-user">
+  <ul class="entries" id="entries">
+    <h1>記事</h1>
+
+    <li class="entry" ng-repeat="e in entries" data-id="{{e.id}}">
+      <h2 class="title"><a ng-href="{{e.url}}" target="_blank">{{e.title}}</a></h2>
+      <div class="meta">
+        <img class="thumbUrl" ng-src="{{e.thumbUrl}}"></img>
+        <span class="description">{{e.description}}</span>
+      </div>
+      <span class="stars"><strong>{{e.stars}}</strong> users</span>
+      <ul class="tags">
+        <li class="date">{{e.date | tinydate}}</li>
+        <li class="tag" ng-repeat="t in e.tags">{{t}}</li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="events">
+
+  </ul>
+</section>

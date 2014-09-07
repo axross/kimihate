@@ -1,0 +1,34 @@
+<section class="v-show">
+  <ul class="entries" id="entries">
+    <!-- <h1>記事</h1> -->
+
+    <li class="entry" ng-repeat="e in entries">
+      <h2 class="title"><a ng-href="{{e.url}}" target="_blank">{{e.title}}</a></h2>
+      <div class="meta">
+        <img class="thumb" ng-src="{{e.thumbUrl}}"></img>
+        <span class="description">{{e.description}}</span>
+      </div>
+      <span class="stars"><strong>{{e.stars}}</strong> stars</span>
+      <ul class="tags">
+        <li class="date">{{e.date | tinydate}}</li>
+        <li class="tag" ng-repeat="t in e.tags">{{t}}</li>
+      </ul>
+    </li>
+
+    <li class="empty" ng-if="!entries || entries.length === 0">記事が見つかりません</li>
+  </ul>
+
+  <ul class="events">
+    <div class="datetime">
+      <!-- <span class="year">2014</span> -->
+      <span class="date">10/23</span>
+      <span class="time">20:00〜</span>
+    </div>
+    <h2 class="title">ハリー先生が教える、トランプマジック教室</h2>
+    <div class="participants">
+      現在の参加者 : <span class="now">3</span>
+      <span class="max">/16</span>
+    </div>
+    <div class="venue">東京都渋谷区桜丘町8-9 メイセイビル1F</div>
+  </ul>
+</section>

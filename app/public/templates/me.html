@@ -1,0 +1,17 @@
+<section class="v-me">
+  <section class="tab-settings">
+    <h2>タブの設定</h2>
+    <div class="desc">タブは全部で10個まで設定できます。</div>
+
+    <ul class="tabs">
+      <li class="tab" ng-repeat="tab in tabs">
+        <input type="text" class="title" ng-model="tab.title" maxlength="32" placeholder="タブの名前">
+        <input type="number" class="stars" ng-model="tab.stars" min="1" max="9999" placeholder="star数">以上
+        <div class="words">
+          <span class="word" ng-repeat="word in tab.words">{{word}}</span>
+          <input type="text" maxlength="32" placeholder="新しいワードを追加...">
+        </div>
+      </li>
+    </ul>
+  </section>
+</section>
