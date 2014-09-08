@@ -1,10 +1,10 @@
 'use strict';
 
-var $           = require('jquery');
-var angular     = require('angular');
-                  require('angular-module-animate');
-                  require('angular-ui-router');
-var app         = angular.module('kimihate', ['ngAnimate', 'ui.router']);
+var $       = require('jquery');
+var angular = require('angular');
+              require('angular-module-animate');
+              require('angular-ui-router');
+var app     = angular.module('kimihate', ['ngAnimate', 'ui.router']);
 
 // Require models
 require('./services/me.js')(app);

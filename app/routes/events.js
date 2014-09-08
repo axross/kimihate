@@ -1,7 +1,7 @@
 var express = require('express');
 var router  = express.Router();
 
-var Entry   = require('../models/entry');
+var Event   = require('../models/event');
 
 router.get('/', function(req, res) {
   var lastId = Number(req.param('last_id', 2147483647));
@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 
   if (limit > 100) { limit = 100; }
 
-  Entry
+  Event
     .find()
     .where('id').lt(lastId)
     .limit(limit)
@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
       res.json({
         status:   true,
         messages: [],
-        entries:  docs
+        events:  docs
       });
     });
 });
