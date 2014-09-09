@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+var mongoose    = require('mongoose');
+var Schema      = mongoose.Schema;
 var eventSchema = new Schema({
   id:              { type: Number, index: { unique: true } },
   title:           String,

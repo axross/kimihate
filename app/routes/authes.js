@@ -1,3 +1,4 @@
+var async           = require('async');
 var express         = require('express');
 var passport        = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
@@ -13,7 +14,43 @@ var User = require('../models/user');
       consumerSecret: CONFIG.auth.twitter.secret,
       callbackURL:    CONFIG.auth.twitter.callbackUrl
     }, function(token, tokenSecret, profile, done) {
-      User.signin(token, tokenSecret, profile, function(err, userId) {
+      var id       = profile.id;
+      var username = profile.username;
+      var thumbUrl = profile.photos[0].value;
+      var now      = new Date();
+
+      async.waterfall([
+        function(next) {
+          User.findOne({ id: id }).exec(function(err, docs) {
+            next(err, docs);
+          });
+        },
+        function(docs, next) {
+          if (docs) {
+            // Update user if exist
+            User.update({ id: id }, {
+              username:       username,
+              thumbUrl:       thumbUrl,
+              lastSigninedAt: now
+            }, {}, function(err, docs) {
+              next(err, docs);
+            });
+          } else {
+            // Create user
+            User.create({
+              id:             id,
+              username:       username,
+              thumbUrl:       thumbUrl,
+              signupedAt:     now,
+              lastSigninedAt: now
+            }, function(err, docs) {
+              next(err, docs);
+            });
+          }
+        }
+      ], function(err, result) {
+        if (err) console.error(err);
+
         done(null, profile);
       });
     }

@@ -1,12 +1,16 @@
-var signin = function(token, tokenSecret, profile, callback) {
-  console.log(token);
-  console.log(tokenSecret);
-  console.log(profile.username);
-  console.log(profile.photos[0].value);
+var mongoose   = require('mongoose');
+var Schema     = mongoose.Schema;
+var userSchema = new Schema({
+  id:                 { type: Number, index: { unique: true } },
+  username:           String,
+  thumbUrl:           String,
+  signupedAt:         Date,
+  lastSigninedAt:     Date,
+  twitterToken:       String,
+  twitterTokenSecret: String,
+  journals:           Array
+});
 
-  callback(null, profile.id)
-};
+var User = mongoose.model('User', userSchema);
 
-module.exports = {
-  signin: signin
-};
+module.exports = User;
