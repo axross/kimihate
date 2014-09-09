@@ -1,26 +1,45 @@
 module.exports = function(app) {
   app.factory('Me', ['$http', function($http) {
-    var user = null;
+    var Me = function() {
+      this.id             = null;
+      this.username       = null;
+      this.thumbUrl       = null;
+      this.signupedAt     = null;
+      this.lastSigninedAt = null;
+      this.journals       = [];
 
-    var init = function(callback) {
-      $http.get('/users/me')
+      this.isInitialized  = false;
+
+      this.init();
+    };
+
+    Me.prototype.init = function(callback) {
+      var self = this;
+
+      $http.get('/user/me')
         .success(function(data, err) {
-          if (data.errors.indexOf('INVALID_PARAMETERS') > -1 ||
-              data.errors.indexOf('USER_FORBIDDEN') > -1) {
-            console.log('signouted');
+          if (data.messages.indexOf('NOT_AUTHENTICATED') > -1) {
+            self.isInitialized  = true;
+
+            callback(self);
           } else {
-            user = data.user;
+            var user = data.user;
 
-            if (!user) { console.log('user error!'); }
+            self.isInitialized  = true;
+            self.id             = user.id;
+            self.username       = user.username;
+            self.thumbUrl       = user.thumbUrl;
+            self.signupedAt     = user.signupedAt;
+            self.lastSigninedAt = user.lastSigninedAt;
+            self.journals       = user.jounals;
 
-            callback(user);
+            if (callback && callback.constructor === Function) {
+              callback(self);
+            }
           }
         });
     };
 
-    return {
-      init: init,
-      user: user
-    };
+    return new Me();
   }]);
 };

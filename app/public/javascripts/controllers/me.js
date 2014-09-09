@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.controller('meController', ['$scope', '$stateParams', 'Entry', function($scope, $stateParams, Entry) {
+  app.controller('meController', ['$scope', '$stateParams', function($scope, $stateParams) {
     // Unscoped values
 
 

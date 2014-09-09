@@ -10,17 +10,17 @@
   <section class="global-header">
     <h1 class="title"><%= title %></h1>
 
-    <a class="signin" ng-if="!user" href="/auth/signin">Twitterで登録/ログイン</a>
+    <a class="signin" ng-if="!me" href="/auth/signin">Twitterで登録/ログイン</a>
 
-    <div class="user" ng-if="user" ng-click="go('me')">
-      <img class="image" ng-src="{{user.thumbUrl}}">
-      <span class="name">@{{user.name}}</span>
+    <div class="user" ng-if="me" ng-click="go('me')">
+      <img class="image" ng-src="{{me.thumbUrl}}">
+      <span class="name">@{{me.username}}</span>
     </div>
   </section>
 
   <section class="global-subheader">
     <ul class="tabs">
-      <li class="tab" ng-repeat="tab in tabs" ng-click="go('show', { id: tab.id })">{{tab.title}}</li>
+      <li class="tab" ng-repeat="j in me.journals" ng-click="go('show', { id: tab.id })">{{tab.title}}</li>
       <li class="edit"><i class="fa fa-cog"></i></li>
     </ul>
   </section>
