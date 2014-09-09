@@ -8,8 +8,6 @@ var User = require('../models/user');
 
 // Initialize passport
 (function() {
-  console.log('init!!!');
-
   passport.use(new TwitterStrategy({
       consumerKey:    CONFIG.auth.twitter.token,
       consumerSecret: CONFIG.auth.twitter.secret,
@@ -26,19 +24,35 @@ var User = require('../models/user');
   });
 
   passport.deserializeUser(function(id, done) {
-    // User.findById(id, function(err, user) {
-    //   done(err, user);
-    // });
-
     done(null, id);
   });
 })();
 
-// Routing
+// Routing in passport
 router.get('/signin',   passport.authenticate('twitter'));
 router.get('/callback', passport.authenticate('twitter', {
-  successRedirect: '/',
-  failureRedirect: '/'
+  successRedirect: '/auth/done',
+  failureRedirect: '/auth/fail'
 }));
+
+// Routing
+router.get('/done', function(req, res) {
+  req.session.userId = req.session.passport.user;
+  req.session.passport = null;
+
+  res.redirect(302, '/');
+});
+
+router.get('/fail', function(req, res) {
+  req.session.passport = null;
+
+  res.redirect(302, '/');
+});
+
+router.get('/signout', function(req, res) {
+  req.session.userId = undefined;
+
+  res.redirect(302, '/');
+});
 
 module.exports = router;
