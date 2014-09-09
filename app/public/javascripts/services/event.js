@@ -1,6 +1,6 @@
 module.exports = function(app) {
-  app.factory('Event', ['$http', function($http) {
-    var Event = function(option) {
+  app.factory('EventVM', ['$http', function($http) {
+    var EventVM = function(option) {
       this.lastId    = option && option.lastId || 2147483647;
       this.limit     = option && option.limit  || 20;
       this.isEnd     = false;
@@ -8,7 +8,7 @@ module.exports = function(app) {
       this.items     = [];
     };
 
-    Event.prototype.fetch = function(callback) {
+    EventVM.prototype.fetch = function(callback) {
       var self = this;
 
       if (self.isLoading) {
@@ -28,21 +28,21 @@ module.exports = function(app) {
           }
         })
         .success(function(data, err) {
-          var entries = data.entries;
+          var events = data.events;
 
-          self.lastId    = entries[entries.length - 1].id;
-          self.isEnd     = (entries.length !== self.limit);
+          self.lastId    = events[events.length - 1].id;
+          self.isEnd     = (events.length !== self.limit);
           self.isLoading = true;
-          self.items     = self.items.concat(entries);
+          self.items     = self.items.concat(events);
 
           setTimeout(function() { self.isLoading = false }, 500);
 
           if (callback && callback.constructor === Function) {
-            callback(entries);
+            callback(events);
           }
         });
     };
 
-    return Event;
+    return EventVM;
   }]);
 };

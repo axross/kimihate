@@ -6,9 +6,12 @@ var angular = require('angular');
               require('angular-ui-router');
 var app     = angular.module('kimihate', ['ngAnimate', 'ui.router']);
 
-// Require models
+// Require services
 require('./services/me.js')(app);
+
+// Require viewmodels
 require('./services/entry.js')(app);
+require('./services/event.js')(app);
 
 // Require controllers
 require('./controllers/global.js')(app);

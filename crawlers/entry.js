@@ -1,4 +1,5 @@
 // Require packages
+var _        = require('underscore');
 var async    = require('async');
 var request  = require('superagent');
 var cheerio  = require('cheerio');
@@ -34,6 +35,7 @@ var fetch = function(url, next) {
       $entry('.tag a').each(function(index, element) {
         entry.tags.push($(this).text());
       });
+      entry.tags = _.uniq(entry.tags);
 
       entries.push(entry);
     });

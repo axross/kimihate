@@ -1,14 +1,15 @@
 var $ = require('jquery');
 
 module.exports = function(app) {
-  app.controller('showController', ['$scope', '$stateParams', 'Entry', function($scope, $stateParams, Entry) {
+  app.controller('showController', ['$scope', '$stateParams', 'EntryVM', 'EventVM', function($scope, $stateParams, EntryVM, EventVM) {
     // Unscoped values
     var tabId = $stateParams.id || null;
-    var entry = new Entry();
+    var entryVM = new EntryVM();
+    var eventVM = new EventVM();
 
     // Scoped values
-    $scope.entries = entry.items;
-    $scope.events  = event.items;
+    $scope.entries = entryVM.items;
+    $scope.events  = eventVM.items;
 
     // Autopaging
     $(window).scroll(function(e) {
@@ -16,17 +17,21 @@ module.exports = function(app) {
       var windowHeight  = $(window).height();
       var contentHeight = $(document).height();
 
-      if (!entry.isLoading && windowHeight + scrollTop + 512 > contentHeight) {
-        entry.fetch(function() {
-          $scope.entries = entry.items;
+      if (!entryVM.isLoading && windowHeight + scrollTop + 512 > contentHeight) {
+        entryVM.fetch(function() {
+          $scope.entries = entryVM.items;
         });
       }
     });
 
     // Initialize
     $scope.$on('$stateChangeSuccess', function() {
-      entry.fetch(function() {
-        $scope.entries = entry.items;
+      entryVM.fetch(function() {
+        $scope.entries = entryVM.items;
+      });
+
+      eventVM.fetch(function() {
+        $scope.events = eventVM.items;
       });
     });
   }]);

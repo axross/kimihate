@@ -1,6 +1,6 @@
 module.exports = function(app) {
-  app.factory('Entry', ['$http', function($http) {
-    var Entry = function(option) {
+  app.factory('EntryVM', ['$http', function($http) {
+    var EntryVM = function(option) {
       this.lastId    = option && option.lastId || 2147483647;
       this.limit     = option && option.limit  || 20;
       this.isEnd     = false;
@@ -8,7 +8,7 @@ module.exports = function(app) {
       this.items     = [];
     };
 
-    Entry.prototype.fetch = function(callback) {
+    EntryVM.prototype.fetch = function(callback) {
       var self = this;
 
       if (self.isLoading) {
@@ -43,6 +43,6 @@ module.exports = function(app) {
         });
     };
 
-    return Entry;
+    return EntryVM;
   }]);
 };

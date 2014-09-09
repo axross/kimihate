@@ -19,16 +19,18 @@
   </ul>
 
   <ul class="events">
-    <div class="datetime">
-      <!-- <span class="year">2014</span> -->
-      <span class="date">10/23</span>
-      <span class="time">20:00〜</span>
-    </div>
-    <h2 class="title">ハリー先生が教える、トランプマジック教室</h2>
-    <div class="participants">
-      現在の参加者 : <span class="now">3</span>
-      <span class="max">/16</span>
-    </div>
-    <div class="venue">東京都渋谷区桜丘町8-9 メイセイビル1F</div>
+    <li class="event" ng-repeat="v in events">
+      <div class="datetime">
+        <!-- <span class="year">2014</span> -->
+        <span class="date">{{v.date}}</span>
+        <span class="time">20:00〜</span>
+      </div>
+      <h2 class="title">{{v.title}}</h2>
+      <div class="participants">
+        現在の参加者 : <span class="now">{{v.nowParticipants}}</span>
+        <span class="max">/{{v.maxParticipants}}</span>
+      </div>
+      <div class="venue">{{v.venue}}</div>
+    </li>
   </ul>
 </section>
