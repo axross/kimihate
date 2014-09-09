@@ -5,7 +5,7 @@ var Entry   = require('../models/entry');
 
 router.get('/', function(req, res) {
   var lastId = Number(req.param('last_id', 2147483647));
-  var limit  = Number(req.param('limit',  20));
+  var limit  = Number(req.param('limit',   20));
 
   if (limit > 100) { limit = 100; }
 
