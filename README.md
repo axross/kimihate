@@ -7,3 +7,5 @@ $ npm install
 $ gulp
 $ npm start
 ```
+
+Last modified on September 18, 2014.
